@@ -1,6 +1,10 @@
 defmodule MyPlug.Router do
   use Plug.Router
 
+  if Mix.env == :dev do
+    use Plug.Debugger
+  end
+
   plug :match
   plug :dispatch
 
