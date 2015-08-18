@@ -7,6 +7,7 @@ defmodule MyPlug do
     import Supervisor.Spec, warn: false
 
     children = [
+      worker(__MODULE__, [], function: :run)
       # Define workers and child supervisors to be supervised
       # worker(MyPlug.Worker, [arg1, arg2, arg3])
     ]
@@ -16,4 +17,9 @@ defmodule MyPlug do
     opts = [strategy: :one_for_one, name: MyPlug.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  def run do
+    {:ok, _} = Plug.Adapters.Cowboy.http MyPlug.Router, []
+  end
+  
 end
