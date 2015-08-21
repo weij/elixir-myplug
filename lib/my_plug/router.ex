@@ -12,4 +12,8 @@ defmodule MyPlug.Router do
   get "/" do
     send_resp(conn, 200, "This entire website runs on Elixir plugs!")
   end
+
+  match _ do
+    send_resp(conn, 404, "oops")
+  end
 end
