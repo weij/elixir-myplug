@@ -12,6 +12,15 @@ defmodule MyPlug.Router do
   get "/" do
     send_resp(conn, 200, "This entire website runs on Elixir plugs!")
   end
+ 
+  get "about/:name" when name == "history" do
+    send_resp(conn, 200, "Our website has a short, yet colorful history")
+  end
+ 
+  get "about/:name" do
+    send_resp(conn, 200, "#{name} is vital to our website's continued success")
+  end
+
 
   match _ do
     send_resp(conn, 404, "oops")
