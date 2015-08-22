@@ -30,6 +30,12 @@ defmodule MyPlug.Router do
     send_resp(conn, 200, "Woah there! Our website does not know what to do with this: #{inspect glob}")
   end
 
+  get "/json/:name" do
+    conn 
+    |> put_resp_content_type("application/json")
+    |> send_resp(200, Poison.encode!(%{name: name}))
+  end
+
   match _ do
     send_resp(conn, 404, "oops")
   end
