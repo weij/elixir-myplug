@@ -13,7 +13,7 @@ defmodule MyPlug.RouterTest do
     assert conn.resp_body == "This entire website runs on Elixir plugs!"
   end
 
-  test "wildcard routing" do
+  test ":name wildcard routing" do
     conn = conn(:get, "/about/Everyone")
     conn = MyPlug.Router.call(conn, @opts)
 
@@ -22,10 +22,19 @@ defmodule MyPlug.RouterTest do
     assert conn.resp_body == "Everyone is vital to our website's continued success"
   end
 
-  test "guard clause routing" do
+  test ":name wilcard but with a guard clause routing" do
     conn = conn(:get, "/about/history")
     conn = MyPlug.Router.call(conn, @opts)
 
     assert conn.resp_body == "Our website has a short, yet colorful history"
   end
+
+  test "hello to my world" do
+    conn = conn(:get, "/about/hello/world")
+    conn = MyPlug.Router.call(conn, @opts)
+    assert conn.resp_body == "hello to my world"
+  end
+
+
+
 end

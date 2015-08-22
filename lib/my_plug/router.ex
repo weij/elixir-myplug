@@ -20,7 +20,11 @@ defmodule MyPlug.Router do
   get "about/:name" do
     send_resp(conn, 200, "#{name} is vital to our website's continued success")
   end
-
+  
+  get "about/*glob" do
+    [hello, world] = glob
+    send_resp(conn, 200, "#{hello} to my #{world}")
+  end
 
   match _ do
     send_resp(conn, 404, "oops")
