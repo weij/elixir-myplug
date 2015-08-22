@@ -22,17 +22,17 @@ defmodule MyPlug.RouterTest do
     assert conn.resp_body == "Everyone is vital to our website's continued success"
   end
 
-  test ":name wilcard but with a guard clause routing" do
+  test ":name wildcard but with a guard clause routing" do
     conn = conn(:get, "/about/history")
     conn = MyPlug.Router.call(conn, @opts)
 
     assert conn.resp_body == "Our website has a short, yet colorful history"
   end
 
-  test "hello to my world" do
-    conn = conn(:get, "/about/hello/world")
+  test "more flexiable wildcard" do
+    conn = conn(:get, "/about/offices/mars")
     conn = MyPlug.Router.call(conn, @opts)
-    assert conn.resp_body == "hello to my world"
+    assert conn.resp_body == "Yes, we do have offices over there by Mars."
   end
 
 

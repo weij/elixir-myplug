@@ -22,8 +22,12 @@ defmodule MyPlug.Router do
   end
   
   get "about/*glob" do
-    [hello, world] = glob
-    send_resp(conn, 200, "#{hello} to my #{world}")
+    [thing, place] = glob
+    send_resp(conn, 200, "Yes, we do have #{thing} over there by #{String.capitalize(place)}.")
+  end
+
+  get "about/demo/*glob" do
+    send_resp(conn, 200, "Woah there! Our website does not know what to do with this: #{inspect glob}")
   end
 
   match _ do
