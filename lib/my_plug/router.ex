@@ -36,6 +36,11 @@ defmodule MyPlug.Router do
     |> send_resp(200, Poison.encode!(%{name: name}))
   end
 
+  get "/page/:action" do
+    [controller, action] = ["page", action]
+    MyPlug.Page.render(conn, controller, action)
+  end
+
   match _ do
     send_resp(conn, 404, "oops")
   end
